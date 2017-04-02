@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "babel-eslint": "^7.2.1",
     "eslint": "^3.18.0",
     "eslint-plugin-prettier": "^2.0.1",
     "eslint-plugin-react": "^6.10.3",
@@ -28,11 +29,11 @@
   "jest": {
     "preset": "jest-expo",
     "coverageDirectory": "./coverage/",
-      "collectCoverageFrom": [
-        "src/**/*.js",
-        "!**/node_modules/**",
-        "!src/test-utils/**"
-      ]
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!**/node_modules/**",
+      "!src/test-utils/**"
+    ]
   },
   "dependencies": {
     "expo": "^15.1.0",
