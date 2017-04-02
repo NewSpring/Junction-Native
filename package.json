@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "appr": "^1.0.1",
     "babel-eslint": "^7.2.1",
     "eslint": "^3.18.0",
     "eslint-plugin-prettier": "^2.0.1",
@@ -16,6 +17,7 @@
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
+    "appr": "appr",
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
