@@ -1,7 +1,18 @@
 import components from "./components";
 import helpers from "./helpers";
 
-const { Text } = components;
+const {
+  Text,
+  BlockQuote,
+  Small,
+  P,
+  Heading,
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+  H6,
+} = components;
 
-export { Text, helpers };
-export default { Text, helpers };
+export { helpers, Text, BlockQuote, Small, P, Heading, H1, H2, H3, H4, H5, H6 };

@@ -22,7 +22,7 @@
     "pre-commit": "^1.2.2",
     "prettier": "^0.22.0",
     "react-native-scripts": "0.0.26",
-    "react-test-renderer": "~15.4.1"
+    "react-test-renderer": "^15.4.2"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -58,10 +58,13 @@
   },
   "dependencies": {
     "@jongold/further": "^1.0.3",
+    "babel-plugin-idx": "^1.4.0",
     "expo": "^15.1.0",
     "fast-memoize": "^2.2.7",
+    "idx": "^1.2.0",
     "ramda": "^0.23.0",
     "react": "~15.4.0",
-    "react-native": "0.42.3"
+    "react-native": "0.42.3",
+    "recompose": "^0.22.0"
   }
 }

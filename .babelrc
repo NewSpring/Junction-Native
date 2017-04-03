@@ -13,5 +13,8 @@
     "development": {
       "plugins": ["transform-react-jsx-source"]
     }
-  }
+  },
+  "plugins": [
+    "idx"
+  ]
 }
