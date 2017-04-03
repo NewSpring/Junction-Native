@@ -26,7 +26,7 @@ const sizes = {
   lg: x => x * 2,
   xl: x => x * 4,
 };
-sizeKeys = Object.keys(sizes);
+const sizeKeys = Object.keys(sizes);
 
 const rounded = Style(props => ({
   borderRadius: getRadius(props),

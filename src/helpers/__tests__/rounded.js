@@ -1,4 +1,4 @@
-import Style from "further";
+// import Style from "further";
 import rounded from "../rounded";
 
 const props = { theme: { baseSize: 2 } };
