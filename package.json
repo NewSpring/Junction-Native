@@ -36,7 +36,7 @@
     "lint": "eslint ./src",
     "flow": "flow",
     "flow-stop": "flow stop",
-    "coverage": "node node_modules/jest/bin/jest.js --coverage",
+    "coverage": "node node_modules/jest/bin/jest.js --coverage && codecov",
     "danger": "danger run --verbose"
   },
   "lint-staged": {
