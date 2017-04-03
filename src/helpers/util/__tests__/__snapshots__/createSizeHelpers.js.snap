@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`has a default scale 1`] = `
+Array [
+  Array [
+    "none",
+    [Function],
+  ],
+  Array [
+    "xs",
+    [Function],
+  ],
+  Array [
+    "sm",
+    [Function],
+  ],
+  Array [
+    "md",
+    [Function],
+  ],
+  Array [
+    "lg",
+    [Function],
+  ],
+  Array [
+    "xl",
+    [Function],
+  ],
+]
+`;

@@ -16,7 +16,7 @@
   ],
   "globals": {
     "process": true,
-    "jasmine": true,
+    "jasmine": true
   },
   "rules": {
     "prettier/prettier": ["error", { "trailingComma": "all" }],
@@ -24,5 +24,15 @@
     "react-native/split-platform-components": 2,
     "react-native/no-inline-styles": 2,
     "react-native/no-color-literals": 2
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {
+        "root": ["./src"],
+        "alias": {
+          "further": "./further"
+        }
+      }
+    }
   }
 }

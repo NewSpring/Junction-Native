@@ -1,15 +1,25 @@
 {
-  "name": "Junction-Native",
+  "name": "junction-native",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "babel": "^6.23.0",
     "babel-eslint": "^7.2.1",
+    "babel-plugin-module-resolver": "^2.7.0",
+    "babel-plugin-ramda": "^1.2.0",
+    "codecov": "^2.1.0",
+    "cross-env": "^4.0.0",
+    "danger": "https://github.com/delianides/danger-js/releases/download/0.14.2/danger-0.14.2.tgz",
     "eslint": "^3.18.0",
+    "eslint-import-resolver-babel-module": "^3.0.0",
+    "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-prettier": "^2.0.1",
     "eslint-plugin-react": "^6.10.3",
     "eslint-plugin-react-native": "^2.3.1",
     "flow-bin": "^0.38.0",
     "jest-expo": "^0.3.0",
+    "lint-staged": "^3.4.0",
+    "pre-commit": "^1.2.2",
     "prettier": "^0.22.0",
     "react-native-scripts": "0.0.26",
     "react-test-renderer": "~15.4.1"
@@ -22,22 +32,35 @@
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js",
     "watch": "node node_modules/jest/bin/jest.js --watch",
+    "lint-staged": "lint-staged",
     "lint": "eslint ./src",
     "flow": "flow",
-    "coverage": "node node_modules/jest/bin/jest.js --coverage"
+    "flow-stop": "flow stop",
+    "coverage": "node node_modules/jest/bin/jest.js --coverage && codecov",
+    "danger": "danger run --verbose"
   },
+  "lint-staged": {
+    "*.js": [
+      "eslint",
+      "jest --bail --findRelatedTests"
+    ]
+  },
+  "pre-commit": "lint-staged",
   "jest": {
     "preset": "jest-expo",
     "coverageDirectory": "./coverage/",
     "collectCoverageFrom": [
       "src/**/*.js",
       "!**/node_modules/**",
-      "!src/test-utils/**"
+      "!src/test-utils/**",
+      "!src/further/**"
     ]
   },
   "dependencies": {
     "@jongold/further": "^1.0.3",
     "expo": "^15.1.0",
+    "fast-memoize": "^2.2.7",
+    "ramda": "^0.23.0",
     "react": "~15.4.0",
     "react-native": "0.42.3"
   }

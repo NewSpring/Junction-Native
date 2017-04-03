@@ -1,5 +1,14 @@
 {
   "presets": ["babel-preset-expo"],
+  "plugins": [
+    "ramda",
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "further": "./further"
+      }
+    }]
+  ],
   "env": {
     "development": {
       "plugins": ["transform-react-jsx-source"]
