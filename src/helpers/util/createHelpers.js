@@ -3,8 +3,8 @@ import { curry, omit } from "ramda";
 import Style from "further";
 
 export type IHelperDescription = {
-  property: string,
-  style: Function,
+  property: string, // "padding"
+  style: Function, // typeof Style. can be Style.empty()
 };
 
 export type IHelperList = {
@@ -14,13 +14,17 @@ export type IHelperList = {
 };
 
 export type IHelperResult = {
-  property: string,
-  name: string,
-  style: Style,
+  property: string, // the `css` style property name (marginLeft, borderTopRadius, etc)
+  name: string, // what the helper will be called with (padding.LEFT, margin.TOP)
+  style: Style, // the style function to be called
 };
 
 const noop = x => x;
 
+/*
+  returns an array of objects with the information needed to add the helpers to the
+  top level style
+*/
 export default curry(({
   property,
   style,
