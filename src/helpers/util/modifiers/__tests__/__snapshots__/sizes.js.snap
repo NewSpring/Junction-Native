@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match the snapshot 1`] = `
+Array [
+  Object {
+    "name": "none",
+    "reducer": [Function],
+  },
+  Object {
+    "name": "xs",
+    "reducer": [Function],
+  },
+  Object {
+    "name": "sm",
+    "reducer": [Function],
+  },
+  Object {
+    "name": "md",
+    "reducer": [Function],
+  },
+  Object {
+    "name": "lg",
+    "reducer": [Function],
+  },
+  Object {
+    "name": "xl",
+    "reducer": [Function],
+  },
+]
+`;

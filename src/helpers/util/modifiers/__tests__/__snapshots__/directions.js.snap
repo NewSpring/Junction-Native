@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match the snapshot 1`] = `
+Array [
+  Object {
+    "name": "top",
+    "propertyModifier": [Function],
+  },
+  Object {
+    "name": "left",
+    "propertyModifier": [Function],
+  },
+  Object {
+    "name": "bottom",
+    "propertyModifier": [Function],
+  },
+  Object {
+    "name": "right",
+    "propertyModifier": [Function],
+  },
+]
+`;
