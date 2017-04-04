@@ -42,7 +42,7 @@
   "lint-staged": {
     "*.js": [
       "eslint",
-      "jest --bail --findRelatedTests"
+      "node node_modules/jest/bin/jest.js --bail --findRelatedTests"
     ]
   },
   "pre-commit": "lint-staged",
