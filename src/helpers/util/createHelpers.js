@@ -14,28 +14,30 @@ type IHelperList = {
 };
 
 type IHelperResult = {
+  property: string,
   name: string,
   style: Style,
 }[];
 
 const noop = x => x;
 
-export default curry(({
-  property,
-  style,
-}: IHelperDescription, list: IHelperList[]): IHelperResult =>
-  list
-    .map(({ name, propertyModifier = noop, reducer }) => ({
-      place: propertyModifier(property, name),
-      reducer,
-      name,
-    }))
-    .map(({ place, name, reducer = noop }) => ({
-      style: style.chain(prev =>
-        Style(props => ({
-          ...omit([property], prev),
-          [place]: props[place] ? props[place] : reducer(prev[property]),
-        }))),
-      property: place,
-      name,
-    })));
+export default curry((
+  {
+    property,
+    style,
+  }: IHelperDescription,
+  list: IHelperList[],
+): IHelperResult => list
+  .map(({ name, propertyModifier = noop, reducer }) => ({
+    place: propertyModifier(property, name),
+    reducer,
+    name,
+  }))
+  .map(({ place, name, reducer = noop }) => ({
+    style: style.chain(prev => Style(props => ({
+      ...omit([property], prev),
+      [place]: props[place] ? props[place] : reducer(prev[property]),
+    }))),
+    property: place,
+    name,
+  })));
