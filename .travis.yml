@@ -12,5 +12,4 @@ before_install:
 script:
 - yarn lint
 - yarn flow
-- yarn test
 - yarn coverage
