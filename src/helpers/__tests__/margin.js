@@ -8,6 +8,7 @@ it("modifies margin at the top level", () => {
 
 it("uses the theme by default", () => {
   expect(margin.resolve(props)).toEqual({ margin: 16 });
+  expect(margin.sm.resolve(props)).toEqual({ margin: 8 });
 });
 
 it("has position modifiers", () => {

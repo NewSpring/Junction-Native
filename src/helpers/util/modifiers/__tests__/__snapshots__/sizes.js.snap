@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match snapshot 1`] = `
+Array [
+  Object {
+    "name": "none",
+    "result": 0,
+  },
+  Object {
+    "name": "xs",
+    "result": 2,
+  },
+  Object {
+    "name": "sm",
+    "result": 4,
+  },
+  Object {
+    "name": "md",
+    "result": 8,
+  },
+  Object {
+    "name": "lg",
+    "result": 16,
+  },
+  Object {
+    "name": "xl",
+    "result": 32,
+  },
+]
+`;
