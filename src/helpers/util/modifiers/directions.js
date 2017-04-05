@@ -8,4 +8,6 @@ export default [
   { name: "left" },
   { name: "bottom" },
   { name: "right" },
+  { name: "ends" },
+  { name: "sides" },
 ].map(x => ({ ...x, propertyModifier }));

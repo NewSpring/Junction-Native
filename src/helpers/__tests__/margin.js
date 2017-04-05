@@ -11,7 +11,7 @@ it("uses the theme by default", () => {
   expect(margin.sm.resolve(props)).toEqual({ margin: 8 });
 });
 
-it("has position modifiers", () => {
+fit("has position modifiers", () => {
   [
     ["left", "marginLeft"],
     ["right", "marginRight"],
@@ -20,6 +20,11 @@ it("has position modifiers", () => {
   ].forEach(([name, place]) => {
     expect(margin[name].resolve(props)).toEqual({ [place]: 16 });
     expect(margin[name].xs.resolve(props)).toEqual({ [place]: 4 });
+  });
+
+  expect(margin.ends.resolve(props)).toEqual({
+    marginBottom: 16,
+    marginTop: 16,
   });
 });
 // XXX should we test this more?

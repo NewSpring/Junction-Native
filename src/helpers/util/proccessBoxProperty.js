@@ -8,12 +8,14 @@ export default (
   switch (key) {
     case "top":
     case "bottom":
+    case "sides":
       return {
         [`${property}Left`]: value,
         [`${property}Right`]: value,
       };
     case "left":
     case "right":
+    case "ends":
       return {
         [`${property}Top`]: value,
         [`${property}Bottom`]: value,
