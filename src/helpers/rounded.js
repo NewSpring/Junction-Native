@@ -11,10 +11,10 @@ import lens from "./util/lenses/baseBorder";
 
 export default call(
   x =>
-    createHelpers(x, sizes).reduce(
+    createHelpers(sizes, x).reduce(
       combine,
-      createHelpers(x, directions)
-        .map(convertToBoxModel)
+      createHelpers(directions, x)
+        // .map(convertToBoxModel)
         .reduce(combine, x.style),
     ),
   { property: "borderRadius", style: Style(lens("borderRadius")) },
