@@ -1,10 +1,10 @@
 import baseSize from "../baseSize";
 
-const data1 = { theme: { baseSize: 2 } };
+const data1 = { theme: { sizes: { base: 2 } } };
 
 it("doubles the base size on the theme", () => {
   const { margin } = baseSize("margin", data1);
-  expect(margin).toEqual(4);
+  expect(margin).toEqual(2);
 });
 
 it("allows overriding with the named value", () => {

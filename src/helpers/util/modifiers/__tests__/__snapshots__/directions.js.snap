@@ -3,20 +3,28 @@
 exports[`should match the snapshot 1`] = `
 Array [
   Object {
-    "name": "top",
-    "propertyModifier": [Function],
+    "name": "left",
+    "reducer": [Function],
   },
   Object {
-    "name": "left",
-    "propertyModifier": [Function],
+    "name": "top",
+    "reducer": [Function],
   },
   Object {
     "name": "bottom",
-    "propertyModifier": [Function],
+    "reducer": [Function],
   },
   Object {
     "name": "right",
-    "propertyModifier": [Function],
+    "reducer": [Function],
+  },
+  Object {
+    "name": "sides",
+    "reducer": [Function],
+  },
+  Object {
+    "name": "ends",
+    "reducer": [Function],
   },
 ]
 `;

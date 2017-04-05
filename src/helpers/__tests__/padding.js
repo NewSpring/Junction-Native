@@ -1,13 +1,13 @@
 import padding from "../padding";
 
-const props = { theme: { baseSize: 8 } };
+const props = { theme: { sizes: { base: 8 } } };
 
 it("modifies padding at the top level", () => {
   expect(padding.resolve({ padding: 1 })).toEqual({ padding: 1 });
 });
 
 it("uses the theme by default", () => {
-  expect(padding.resolve(props)).toEqual({ padding: 16 });
+  expect(padding.resolve(props)).toEqual({ padding: 8 });
 });
 
 it("has position modifiers", () => {
@@ -17,8 +17,8 @@ it("has position modifiers", () => {
     ["bottom", "paddingBottom"],
     ["top", "paddingTop"],
   ].forEach(([name, place]) => {
-    expect(padding[name].resolve(props)).toEqual({ [place]: 16 });
-    expect(padding[name].xs.resolve(props)).toEqual({ [place]: 4 });
+    expect(padding[name].resolve(props)).toEqual({ [place]: 8 });
+    expect(padding[name].xs.resolve(props)).toEqual({ [place]: 2 });
   });
 });
 // XXX should we test this more?
