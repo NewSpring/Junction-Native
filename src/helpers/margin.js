@@ -11,12 +11,14 @@ import upperCaseFirstLetter from "./util/upperCaseFirstLetter";
  * util/modifiers/sizes.js
  */
 // expect(margin.sm.resolve(props)).toEqual({ margin: 8 });
-const sizeReducer = amount => properties => properties.map(
-  // console.log(properties, amount),
-  ({ property, value }) => ({
-    [property]: value * amount,
-  }),
-);
+const sizeReducer = amount =>
+  properties =>
+    properties.map(
+      // console.log(properties, amount),
+      ({ property, value }) => ({
+        [property]: value * amount,
+      }),
+    );
 
 const sizes = [
   {
@@ -42,21 +44,30 @@ const sizes = [
  *
  */
 // generic direction reducer
-const reducer = properties => properties.map(
-  ({ property, props, name }) => (console.log(property, name, props), {
+const reducer = properties =>
+  properties.map(({ property, props, name }) => ({
     [`${property}${upperCaseFirstLetter(name)}`]: lens(property, props)[
       property
     ],
-  }),
-);
+  }));
+
+// direction reducer for sides/ends (two results)
+const doubleReducer = properties =>
+  properties.map(({ property, props, name }) => {
+    const names = name === "ends" ? ["Top", "Bottom"] : ["Left", "Right"];
+    return {
+      [`${property}${names[0]}`]: lens(property, props)[property],
+      [`${property}${names[1]}`]: lens(property, props)[property],
+    };
+  });
 
 const directions = [
   { name: "left", reducer },
   { name: "top", reducer },
   { name: "bottom", reducer },
   { name: "right", reducer },
-  { name: "sides", reducer },
-  { name: "ends", reducer },
+  { name: "sides", reducer: doubleReducer },
+  { name: "ends", reducer: doubleReducer },
 ];
 
 /*
@@ -65,17 +76,18 @@ const directions = [
 
 export default call(
   // create margin.sm, md, lg, etc
-  x => createHelpers(sizes, x).reduce(
-    combine,
-    // create margin.left, right, etc
-    createHelpers(directions, x)
-      // // create margin.left.sm, etc
-      .map(y => ({
-        ...y,
-        style: createHelpers(sizes, y).reduce(combine, y.style),
-      }))
-      .reduce(combine, x.style),
-  ),
+  x =>
+    createHelpers(sizes, x).reduce(
+      combine,
+      // create margin.left, right, etc
+      createHelpers(directions, x)
+        // // create margin.left.sm, etc
+        .map(y => ({
+          ...y,
+          style: createHelpers(sizes, y).reduce(combine, y.style),
+        }))
+        .reduce(combine, x.style),
+    ),
   // define that margin is the property to create
   { property: "margin", style: Style(lens("margin")) },
 );

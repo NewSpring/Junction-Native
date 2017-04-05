@@ -11,7 +11,7 @@ it("uses the theme by default", () => {
   expect(margin.sm.resolve(props)).toEqual({ margin: 8 });
 });
 
-fit("has position modifiers", () => {
+it("has position modifiers", () => {
   [
     ["left", "marginLeft"],
     ["right", "marginRight"],
@@ -19,7 +19,9 @@ fit("has position modifiers", () => {
     ["top", "marginTop"],
   ].forEach(([name, place]) => {
     expect(margin[name].resolve(props)).toEqual({ [place]: 16 });
-    expect(margin[name].xs.resolve(props)).toEqual({ [place]: 4 });
+    // console.log(margin);
+    // expect(margin[name].xs.resolve(props)).toEqual({ [place]: 4 });
+    expect(margin[name].sm.resolve(props)).toEqual({ [place]: 8 });
   });
 
   expect(margin.ends.resolve(props)).toEqual({
