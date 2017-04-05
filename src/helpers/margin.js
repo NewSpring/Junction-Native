@@ -44,7 +44,9 @@ const sizes = [
 // generic direction reducer
 const reducer = properties => properties.map(
   ({ property, props, name }) => (console.log(property, name, props), {
-    [`${property}${upperCaseFirstLetter(name)}`]: lens(property)(props),
+    [`${property}${upperCaseFirstLetter(name)}`]: lens(property, props)[
+      property
+    ],
   }),
 );
 
