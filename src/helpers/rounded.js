@@ -4,63 +4,57 @@ import Style from "further";
 
 import createHelpers from "./util/createHelpers";
 import combine from "./util/combine";
-import convertToBoxModel from "./util/convertToBoxModel";
 import sizes from "./util/modifiers/sizes";
-// import directions from "./util/modifiers/directions";
 import lens from "./util/lenses/baseBorder";
 
 const borderDirections = [
   {
     name: "top",
-    reducer: properties =>
-      properties.map(({ props }) => ({
-        borderTopLeftRadius: props.borderTop
-          ? props.borderTop
-          : props.theme.sizes.border,
+    reducer: properties => properties.map(({ props }) => ({
+      borderTopLeftRadius: (
+        props.borderTop ? props.borderTop : props.theme.sizes.border
+      ),
 
-        borderTopRightRadius: props.borderTop
-          ? props.borderTop
-          : props.theme.sizes.border,
-      })),
+      borderTopRightRadius: (
+        props.borderTop ? props.borderTop : props.theme.sizes.border
+      ),
+    })),
   },
   {
     name: "bottom",
-    reducer: properties =>
-      properties.map(({ props }) => ({
-        borderBottomLeftRadius: props.borderBottom
-          ? props.borderBottom
-          : props.theme.sizes.border,
+    reducer: properties => properties.map(({ props }) => ({
+      borderBottomLeftRadius: (
+        props.borderBottom ? props.borderBottom : props.theme.sizes.border
+      ),
 
-        borderBottomRightRadius: props.borderBottom
-          ? props.borderBottom
-          : props.theme.sizes.border,
-      })),
+      borderBottomRightRadius: (
+        props.borderBottom ? props.borderBottom : props.theme.sizes.border
+      ),
+    })),
   },
   {
     name: "left",
-    reducer: properties =>
-      properties.map(({ props }) => ({
-        borderTopLeftRadius: props.borderLeft
-          ? props.borderLeft
-          : props.theme.sizes.border,
+    reducer: properties => properties.map(({ props }) => ({
+      borderTopLeftRadius: (
+        props.borderLeft ? props.borderLeft : props.theme.sizes.border
+      ),
 
-        borderBottomLeftRadius: props.borderLeft
-          ? props.borderLeft
-          : props.theme.sizes.border,
-      })),
+      borderBottomLeftRadius: (
+        props.borderLeft ? props.borderLeft : props.theme.sizes.border
+      ),
+    })),
   },
   {
     name: "right",
-    reducer: properties =>
-      properties.map(({ props }) => ({
-        borderTopRightRadius: props.borderRight
-          ? props.borderRight
-          : props.theme.sizes.border,
+    reducer: properties => properties.map(({ props }) => ({
+      borderTopRightRadius: (
+        props.borderRight ? props.borderRight : props.theme.sizes.border
+      ),
 
-        borderBottomRightRadius: props.borderRight
-          ? props.borderRight
-          : props.theme.sizes.border,
-      })),
+      borderBottomRightRadius: (
+        props.borderRight ? props.borderRight : props.theme.sizes.border
+      ),
+    })),
   },
 ];
 
@@ -73,12 +67,11 @@ const borderDirections = [
 //   });
 
 export default call(
-  x =>
-    createHelpers(sizes, x).reduce(
-      combine,
-      createHelpers(borderDirections, x)
-        // .map(convertToBoxModel)
-        .reduce(combine, x.style),
-    ),
+  x => createHelpers(sizes, x).reduce(
+    combine,
+    createHelpers(borderDirections, x)
+      // .map(convertToBoxModel)
+      .reduce(combine, x.style),
+  ),
   { property: "borderRadius", style: Style(lens("borderRadius")) },
 );

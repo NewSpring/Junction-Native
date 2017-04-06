@@ -1,12 +1,10 @@
 //@flow
-import { curry, omit, toPairs } from "ramda";
+import { curry, toPairs } from "ramda";
 import Style from "further";
 
-import combine from "./combine";
-
 export type IHelperDescription = {
-  property: string,
-  style: Function,
+  property: void | string,
+  style: void | Function,
 };
 
 export type IHelperProperty = {
@@ -28,17 +26,19 @@ export type IHelperResult = {
 
 export default curry((
   list: IHelperList[],
-  { property, style }: IHelperDescription,
-): IHelperResult[] =>
-  list.map(({ place, name, reducer = noop }) => ({
-    style: style.chain(style => Style(props => reducer(
-      toPairs(style).map(([key, value]) => ({
-        property: key,
-        value,
-        name,
-        props,
-      })),
-    ).reduce((prev, next) => ({ ...prev, ...next }), {}))),
-    property,
-    name,
-  })));
+  {
+    property = "",
+    style = Style.empty(),
+  }: IHelperDescription,
+): IHelperResult[] => list.map(({ name, reducer }) => ({
+  style: style.chain(style => Style(props => reducer(
+    toPairs(style).map(([key, value]) => ({
+      property: key,
+      value,
+      name,
+      props,
+    })),
+  ).reduce((prev, next) => ({ ...prev, ...next }), {}))),
+  property,
+  name,
+})));
