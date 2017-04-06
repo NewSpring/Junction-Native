@@ -8,9 +8,10 @@ export type IHelperDescription = {
 };
 
 export type IHelperProperty = {
-  property: string, // "padding"
+  property?: string, // "padding"
   props: Object, // props from the component
   name: string, // what the helper will be called (padding.LEFT, margin.TOP)
+  value?: any, // the value of the property
 };
 
 export type IHelperList = {
@@ -28,21 +29,27 @@ export type IHelperResult = {
   returns an array of objects with the information needed to add the helpers to the
   top level style
 */
-export default curry((list: IHelperList[], {
-  property = "",
-  style = Style.empty(),
-}: IHelperDescription): IHelperResult[] =>
-  list.map(({ name, reducer }) => ({
-    style: style.chain(style =>
-      Style(props =>
-        reducer(
-          toPairs(style).map(([key, value]) => ({
-            property: key,
-            value,
-            name,
-            props,
-          })),
-        ).reduce((prev, next) => ({ ...prev, ...next }), {}))),
-    property,
-    name,
-  })));
+// XXX should we allow for not passing a second argument?
+export default curry((
+  list: IHelperList[],
+  {
+    property = "",
+    style = Style.empty(),
+  }: IHelperDescription,
+): IHelperResult[] => list.map(({ name, reducer }) => ({
+  style: style.chain((prev = {}) => Style(props => reducer(
+    // support empty style objects (for things like position: "absolute")
+    Object.keys(prev).length > 0
+      ? // map over previous values in the style object
+        toPairs(prev).map(([key, value]) => ({
+          property: key,
+          value,
+          name,
+          props,
+        }))
+      : // pass just the name and props if no prev items
+        [{ name, props }],
+  ).reduce((prev, next) => ({ ...prev, ...next }), {}))),
+  property,
+  name,
+})));
