@@ -8,7 +8,7 @@ export type IHelperDescription = {
 };
 
 export type IHelperProperty = {
-  property?: string, // "padding"
+  property: string, // "padding"
   props: Object, // props from the component
   name: string, // what the helper will be called (padding.LEFT, margin.TOP)
   value?: any, // the value of the property
@@ -47,8 +47,8 @@ export default curry((list: IHelperList[], {
                 name,
                 props,
               }))
-            : // pass just the name and props if no prev items
-              [{ name, props }],
+            : // pass just the name, property, and props if no prev items
+              [{ name, props, property }],
         ).reduce((prev, next) => ({ ...prev, ...next }), {}))),
     property,
     name,

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`has 9 colors 1`] = `
+Array [
+  Object {
+    "name": "primary",
+    "reducer": [Function],
+  },
+  Object {
+    "name": "secondary",
+    "reducer": [Function],
+  },
+  Object {
+    "name": "tertiary",
+    "reducer": [Function],
+  },
+  Object {
+    "name": "dark",
+    "reducer": [Function],
+  },
+  Object {
+    "name": "darkSecondary",
+    "reducer": [Function],
+  },
+  Object {
+    "name": "darkTertiary",
+    "reducer": [Function],
+  },
+  Object {
+    "name": "light",
+    "reducer": [Function],
+  },
+  Object {
+    "name": "lightSecondary",
+    "reducer": [Function],
+  },
+  Object {
+    "name": "lightTertiary",
+    "reducer": [Function],
+  },
+]
+`;
