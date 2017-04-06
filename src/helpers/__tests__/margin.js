@@ -19,14 +19,18 @@ it("has position modifiers", () => {
     ["top", "marginTop"],
   ].forEach(([name, place]) => {
     expect(margin[name].resolve(props)).toEqual({ [place]: 8 });
-    // console.log(margin);
-    // expect(margin[name].xs.resolve(props)).toEqual({ [place]: 4 });
+    expect(margin[name].xs.resolve(props)).toEqual({ [place]: 2 });
     expect(margin[name].sm.resolve(props)).toEqual({ [place]: 4 });
   });
 
   expect(margin.ends.resolve(props)).toEqual({
     marginBottom: 8,
     marginTop: 8,
+  });
+
+  expect(margin.sides.resolve(props)).toEqual({
+    marginLeft: 8,
+    marginRight: 8,
   });
 });
 // XXX should we test this more?
