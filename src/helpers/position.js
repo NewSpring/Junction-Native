@@ -5,11 +5,10 @@ import combine from "./util/combine";
 import createHelpers from "./util/createHelpers";
 import type IHelperProperty from "./util/createHelpers";
 
-export const reducer = (properties: IHelperProperty[]) => properties.map((
-  { name },
-) => ({
-  position: name,
-}));
+export const reducer = (properties: IHelperProperty[]) =>
+  properties.map(({ name }) => ({
+    position: name,
+  }));
 
 export const positions = [
   { name: "absolute", reducer },
@@ -30,23 +29,21 @@ export const directions = [
   { name: "bottom", reducer: directionReducer },
   {
     name: "ends",
-    reducer: (properties: IHelperProperty[]) => properties.map((
-      { property, value },
-    ) => ({
-      top: 0,
-      bottom: 0,
-      [property]: value,
-    })),
+    reducer: (properties: IHelperProperty[]) =>
+      properties.map(({ property, value }) => ({
+        top: 0,
+        bottom: 0,
+        [property]: value,
+      })),
   },
   {
     name: "sides",
-    reducer: (properties: IHelperProperty[]) => properties.map((
-      { property, value },
-    ) => ({
-      left: 0,
-      right: 0,
-      [property]: value,
-    })),
+    reducer: (properties: IHelperProperty[]) =>
+      properties.map(({ property, value }) => ({
+        left: 0,
+        right: 0,
+        [property]: value,
+      })),
   },
 ];
 

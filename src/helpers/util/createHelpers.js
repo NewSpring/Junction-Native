@@ -30,26 +30,26 @@ export type IHelperResult = {
   top level style
 */
 // XXX should we allow for not passing a second argument?
-export default curry((
-  list: IHelperList[],
-  {
-    property = "",
-    style = Style.empty(),
-  }: IHelperDescription,
-): IHelperResult[] => list.map(({ name, reducer }) => ({
-  style: style.chain((prev = {}) => Style(props => reducer(
-    // support empty style objects (for things like position: "absolute")
-    Object.keys(prev).length > 0
-      ? // map over previous values in the style object
-        toPairs(prev).map(([key, value]) => ({
-          property: key,
-          value,
-          name,
-          props,
-        }))
-      : // pass just the name and props if no prev items
-        [{ name, props }],
-  ).reduce((prev, next) => ({ ...prev, ...next }), {}))),
-  property,
-  name,
-})));
+export default curry((list: IHelperList[], {
+  property = "",
+  style = Style.empty(),
+}: IHelperDescription): IHelperResult[] =>
+  list.map(({ name, reducer }) => ({
+    style: style.chain((prev = {}) =>
+      Style(props =>
+        reducer(
+          // support empty style objects (for things like position: "absolute")
+          Object.keys(prev).length > 0
+            ? // map over previous values in the style object
+              toPairs(prev).map(([key, value]) => ({
+                property: key,
+                value,
+                name,
+                props,
+              }))
+            : // pass just the name and props if no prev items
+              [{ name, props }],
+        ).reduce((prev, next) => ({ ...prev, ...next }), {}))),
+    property,
+    name,
+  })));
