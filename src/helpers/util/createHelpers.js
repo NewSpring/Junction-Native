@@ -24,21 +24,21 @@ export type IHelperResult = {
   style: Style,
 };
 
-export default curry((
-  list: IHelperList[],
-  {
-    property = "",
-    style = Style.empty(),
-  }: IHelperDescription,
-): IHelperResult[] => list.map(({ name, reducer }) => ({
-  style: style.chain(style => Style(props => reducer(
-    toPairs(style).map(([key, value]) => ({
-      property: key,
-      value,
-      name,
-      props,
-    })),
-  ).reduce((prev, next) => ({ ...prev, ...next }), {}))),
-  property,
-  name,
-})));
+export default curry((list: IHelperList[], {
+  property = "",
+  style = Style.empty(),
+}: IHelperDescription): IHelperResult[] =>
+  list.map(({ name, reducer }) => ({
+    style: style.chain(style =>
+      Style(props =>
+        reducer(
+          toPairs(style).map(([key, value]) => ({
+            property: key,
+            value,
+            name,
+            props,
+          })),
+        ).reduce((prev, next) => ({ ...prev, ...next }), {}))),
+    property,
+    name,
+  })));
