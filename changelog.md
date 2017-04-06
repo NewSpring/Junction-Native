@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - round (@jbaxleyiii)
   - visible (@jbaxleyiii)
   - width (@jbaxleyiii)
+  - media (@jbaxleyiii)
 
 ### Fixed
 
