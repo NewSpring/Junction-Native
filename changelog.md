@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - helper generation methods (@jbaxleyiii)
   - position and rounded helpers (@jbaxleyiii, @delianides, @jakedawkins)
   - improved createHelper method (@jbaxleyiii, @delianides, @jakedawkins)
+  - scrollable (@jbaxleyiii)
 
 ### Fixed
 
