@@ -46,4 +46,3 @@ export default curry((list: IHelperList[], {
     property,
     name,
   })));
-
