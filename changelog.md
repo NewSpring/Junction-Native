@@ -13,6 +13,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - improved createHelper method (@jbaxleyiii, @delianides, @jakedawkins)
   - scrollable (@jbaxleyiii)
   - backgrounds (@jbaxleyiii, @jakedawkins)
+  - align (@jbaxleyii)
+  - display (@jbaxleyiii)
+  - hidden (@jbaxleyiii)
+  - marginBack (@jbaxleyiii)
+  - maxWidth (@jbaxleyiii)
+  - round (@jbaxleyiii)
+  - visible (@jbaxleyiii)
+  - width (@jbaxleyiii)
 
 ### Fixed
 
