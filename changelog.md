@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
   - helper generation methods (@jbaxleyiii)
   - position and rounded helpers (@jbaxleyiii via @delianides and @jakedawkins)
+  - improved createHelper method (@jbaxleyiii, @delianides, @jakedawkins)
 
 ### Fixed
 

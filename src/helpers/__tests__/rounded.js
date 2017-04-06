@@ -1,6 +1,6 @@
 import rounded from "../rounded";
 
-const props = { theme: { borderSize: 2 } };
+const props = { theme: { sizes: { border: 2 } } };
 
 it("modifies borderRadius at the top level", () => {
   expect(rounded.resolve({ borderRadius: 1 })).toEqual({ borderRadius: 1 });
@@ -13,10 +13,10 @@ it("uses the theme by default", () => {
 
 it("has position modifiers", () => {
   [
-    ["left", "borderRadiusLeftTop", "borderRadiusLeftBottom"],
-    ["right", "borderRadiusRightTop", "borderRadiusRightBottom"],
-    ["bottom", "borderRadiusBottomLeft", "borderRadiusBottomRight"],
-    ["top", "borderRadiusTopLeft", "borderRadiusTopRight"],
+    ["left", "borderTopLeftRadius", "borderBottomLeftRadius"],
+    ["right", "borderTopRightRadius", "borderBottomRightRadius"],
+    ["bottom", "borderBottomLeftRadius", "borderBottomRightRadius"],
+    ["top", "borderTopLeftRadius", "borderTopRightRadius"],
   ].forEach(([name, place1, place2]) => {
     expect(rounded[name].resolve(props)).toEqual({ [place1]: 2, [place2]: 2 });
   });

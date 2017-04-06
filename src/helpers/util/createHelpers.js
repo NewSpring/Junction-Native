@@ -1,16 +1,21 @@
 //@flow
-import { curry, omit } from "ramda";
+import { curry, toPairs } from "ramda";
 import Style from "further";
 
 export type IHelperDescription = {
+  property: void | string, // "padding"
+  style: void | Function, // typeof Style. can be Style.empty()
+};
+
+export type IHelperProperty = {
   property: string, // "padding"
-  style: Function, // typeof Style. can be Style.empty()
+  props: Object, // props from the component
+  name: string, // what the helper will be called (padding.LEFT, margin.TOP)
 };
 
 export type IHelperList = {
   name: string, // the name of the helper (i.e "left", "sm")
-  propertyModifier: (string) => string, // the name of the css property to modify (i.e margin => "marginLeft")
-  reducer: (any) => any, // the reducer for the previous value (i.e for "sm" it would be x => x/d)
+  reducer: (IHelperProperty[]) => Object[], // an array of props, properties, and values to which return an array of new css properties
 };
 
 export type IHelperResult = {
@@ -19,30 +24,25 @@ export type IHelperResult = {
   style: Style, // the style function to be called
 };
 
-const noop = x => x;
-
 /*
   returns an array of objects with the information needed to add the helpers to the
   top level style
 */
-export default curry(({
-  property,
-  style,
-}: IHelperDescription, list: IHelperList[]): IHelperResult[] =>
-  list
-    .map(({ name, propertyModifier = noop, reducer }) => ({
-      place: propertyModifier(property, name),
-      reducer,
-      name,
-    }))
-    .map(({ place, name, reducer = noop }) => ({
-      style: style.chain(prev =>
-        Style(props => ({
-          ...omit([property], prev),
-          [place]: props[place]
-            ? reducer(props[place])
-            : reducer(prev[property]),
-        }))),
-      property: place,
-      name,
-    })));
+export default curry((list: IHelperList[], {
+  property = "",
+  style = Style.empty(),
+}: IHelperDescription): IHelperResult[] =>
+  list.map(({ name, reducer }) => ({
+    style: style.chain(style =>
+      Style(props =>
+        reducer(
+          toPairs(style).map(([key, value]) => ({
+            property: key,
+            value,
+            name,
+            props,
+          })),
+        ).reduce((prev, next) => ({ ...prev, ...next }), {}))),
+    property,
+    name,
+  })));

@@ -9,13 +9,25 @@ it("can handle adding a new property from a previous one", () => {
 
   const props = { theme: { baseSize: 8 } };
   const sizes = [
-    { name: "left", propertyModifier: () => "marginLeft" },
-    { name: "sm", reducer: prev => prev / 2 },
+    {
+      name: "left",
+      reducer: properties =>
+        properties.map(({ property, name, value, props }) => ({
+          [`${property}${name}`]: props.marginLeft ? props.marginLeft : value,
+        })),
+    },
+    {
+      name: "sm",
+      reducer: properties =>
+        properties.map(({ property, value }) => ({
+          [property]: value / 2,
+        })),
+    },
   ];
-  const [left, sm] = create({ property: "margin", style: st }, sizes);
-  expect(left.style.resolve(props)).toEqual({ marginLeft: 16 });
+  const [left, sm] = create(sizes, { property: "margin", style: st });
+  expect(left.style.resolve(props)).toEqual({ marginleft: 16 });
   expect(sm.style.resolve(props)).toEqual({ margin: 8 });
-  expect(left.style.resolve({ marginLeft: 1 })).toEqual({ marginLeft: 1 });
+  expect(left.style.resolve({ marginLeft: 1 })).toEqual({ marginleft: 1 });
 });
 
 it("can be curried and handle adding a new property from a previous one", () => {
@@ -25,12 +37,24 @@ it("can be curried and handle adding a new property from a previous one", () => 
 
   const props = { theme: { baseSize: 8 } };
   const sizes = [
-    { name: "left", propertyModifier: () => "marginLeft" },
-    { name: "sm", reducer: prev => prev / 2 },
+    {
+      name: "left",
+      reducer: properties =>
+        properties.map(({ property, name, value, props }) => ({
+          [`${property}${name}`]: props.marginLeft ? props.marginLeft : value,
+        })),
+    },
+    {
+      name: "sm",
+      reducer: properties =>
+        properties.map(({ property, value }) => ({
+          [property]: value / 2,
+        })),
+    },
   ];
-  const helperDef = create({ property: "margin", style: st });
-  const [left, sm] = helperDef(sizes);
-  expect(left.style.resolve(props)).toEqual({ marginLeft: 16 });
+  const sizeHelpers = create(sizes);
+  const [left, sm] = sizeHelpers({ property: "margin", style: st });
+  expect(left.style.resolve(props)).toEqual({ marginleft: 16 });
   expect(sm.style.resolve(props)).toEqual({ margin: 8 });
-  expect(left.style.resolve({ marginLeft: 1 })).toEqual({ marginLeft: 1 });
+  expect(left.style.resolve({ marginLeft: 1 })).toEqual({ marginleft: 1 });
 });
